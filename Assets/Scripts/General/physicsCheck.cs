@@ -42,7 +42,7 @@ public class physicsCheck : MonoBehaviour
         
         if (playerController != null)
         {
-            onWall = (touchLeftWall || touchRightWall) && playerController.isWallsliding && rb.velocity.y <= 0;
+            onWall = (touchLeftWall || touchRightWall)&&rb.velocity.y <= 0;
         }
     }
     // 同样修改Gizmos绘制方法

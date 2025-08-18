@@ -47,6 +47,15 @@ public class Character : MonoBehaviour
 
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Water"))
+        {
+            currentHealth = 0;
+            onHealthChange?.Invoke(this);
+            onDie?.Invoke();
+        }
+    }
     public UnityEvent<Transform> OnTakeDamage;
     //使用UnityEvent来处理受伤事件，可以在Inspector中绑定其他脚本的响应函数
     //例如可以在受伤时播放音效、触发特效等

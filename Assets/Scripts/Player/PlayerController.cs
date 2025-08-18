@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
         {
             return; // 如果正在墙壁跳跃或在墙上，则不处理其他输入
         }
+        if (playerCheck.onWall)
+            jumpCounts = 2;
         //获取移动输入
         inputDirection = inputControl.Gameplay.Move.ReadValue<Vector2>();
         InputCorrection(); // 调用输入修正方法
@@ -140,23 +142,27 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
             StartCoroutine(playerJump()); // 启动跳跃协程
             jumpCounts--; // 减少跳跃次数
+            GetComponent<AudioDefination>()?.PlayAudioClip();
         }
         else if (!playerCheck.isGround && jumpCounts == 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 重置垂直速度
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpCounts--; // 减少跳跃次数
+            GetComponent<AudioDefination>()?.PlayAudioClip();
         }
         else if(playerCheck.onWall)
         {
             rb.AddForce(new Vector2(wallDir, 2f)*wallJumpForce,ForceMode2D.Impulse);
             isWallJumping = true;
+            GetComponent<AudioDefination>()?.PlayAudioClip();
         }
         if (!playerCheck.isGround && jumpCounts == 2&&!playerCheck.onWall)
         {
             rb.velocity = new Vector2(rb.velocity.x, 0); // 重置垂直速度
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpCounts--; // 减少跳跃次数
+            GetComponent<AudioDefination>()?.PlayAudioClip();
         }
     }
     private IEnumerator playerJump()
