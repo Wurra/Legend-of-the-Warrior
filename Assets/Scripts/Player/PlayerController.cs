@@ -101,8 +101,10 @@ public class PlayerController : MonoBehaviour
         {
             return; // 如果正在墙壁跳跃或在墙上，则不处理其他输入
         }
+
         if (playerCheck.onWall)
             jumpCounts = 2;
+
         //获取移动输入
         inputDirection = inputControl.Gameplay.Move.ReadValue<Vector2>();
         InputCorrection(); // 调用输入修正方法

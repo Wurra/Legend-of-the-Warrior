@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.DualShock;
@@ -32,6 +33,7 @@ public class Sign : MonoBehaviour
     private void OnDisable()
     {
         InputSystem.onActionChange -= OnActionChange;
+        canPress = false;
     }
 
 
@@ -61,7 +63,7 @@ public class Sign : MonoBehaviour
         }
     }
         
-
+    
     private void Update()
     {
         signSprite.GetComponent<SpriteRenderer>().enabled = canPress;
