@@ -16,6 +16,7 @@ public class SceneLoader : MonoBehaviour
 
     [Header("广播")]
     public VoidEventSO aftersceneLoadEvent;
+    public FadeEventSO fadeEvent;
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     public Vector3 positionToGo;
@@ -71,7 +72,8 @@ public class SceneLoader : MonoBehaviour
     {
         if (fadeScreen)
         {
-           //TODO;实现屏幕淡出效果
+           //TODO;逐渐变黑
+           fadeEvent.FadeIn(fadeDuration);
         }
         yield return new WaitForSeconds(fadeDuration);
   
@@ -93,6 +95,7 @@ public class SceneLoader : MonoBehaviour
         if (fadeScreen)
         {
             //TODO;实现屏幕淡入效果
+            fadeEvent.FadeOut(fadeDuration);
         }
         isLoading= false;
         //场景加载完成后触发事件
