@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
+    [Header("监听事件")]
+    public SceneLoadEventSO loadEvent;
+    public VoidEventSO afterSceneLoadEvent;
     public PlayerInputControl inputControl;
     //这是在proje中右键点击Assets文件夹，选择Create->Input Actions创建的输入控制器
     //名字可重命名为PlayerInputControl
@@ -82,12 +85,19 @@ public class PlayerController : MonoBehaviour
     {
         //启用 PlayerInputControl
         inputControl.Enable();
+        loadEvent.LoadRequestEvent +=OnloadEvent;
+        afterSceneLoadEvent.OnEventRaised += OnafterSceneLoadEvent;
     }
     private void OnDisable()
     {
         //禁用 PlayerInputControl
         inputControl.Disable();
+        loadEvent.LoadRequestEvent -= OnloadEvent;
+        afterSceneLoadEvent.OnEventRaised -= OnafterSceneLoadEvent;
     }
+
+   
+
     private void Update()
     {
         if (isDashing || isHurt) // 添加isHurt检查
@@ -118,6 +128,17 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         Wallslide();
     }
+
+    private void OnloadEvent(GameSceneSO arg0, Vector3 arg1, bool arg2)
+    {
+        inputControl.Gameplay.Disable(); // 禁用输入控制
+    }
+
+    private void OnafterSceneLoadEvent()
+    {
+        inputControl.Gameplay.Enable(); // 启用输入控制
+    }
+
     private void MovePlayer()
     {
         if (!isWallJumping)

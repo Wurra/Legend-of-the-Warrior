@@ -30,6 +30,6 @@ public class Chest : MonoBehaviour,IInteractable
     {
         isDone = true;
         spriteRenderer.sprite = openSprite;
-        
+        this.gameObject.tag="Untagged"; 
     }
 }

@@ -10,13 +10,19 @@ public class SceneLoader : MonoBehaviour
 {
     public Transform playerTransform; // 玩家变换组件
     public Vector3 firstPosition; // 初始位置变换组件
+    public Vector3 menuPosition;
     [Header("事件监听")]
     public SceneLoadEventSO LoadEventSO;
-    public GameSceneSO firstLoadScene;
+    public VoidEventSO NewGameEvent;
 
     [Header("广播")]
     public VoidEventSO aftersceneLoadEvent;
     public FadeEventSO fadeEvent;
+    public SceneLoadEventSO unloadedSceneEvent;
+
+    [Header("场景")]
+    public GameSceneSO firstLoadScene;
+    public GameSceneSO MenuScene;
     private GameSceneSO currentLoadedScene;
     private GameSceneSO sceneToLoad;
     public Vector3 positionToGo;
@@ -32,22 +38,26 @@ public class SceneLoader : MonoBehaviour
     //做完mainmenu后再改
     private void Start()
     {
-        NewGame();
+        LoadEventSO.RaiseLoadRequestEvent(MenuScene, menuPosition, true);
+        //NewGame();
     }
 
     private void OnEnable()
     {
         LoadEventSO.LoadRequestEvent += OnLoadRequestEvent;
+        NewGameEvent.OnEventRaised += NewGame;
     }
     private void OnDisable()
     {
         LoadEventSO.LoadRequestEvent -= OnLoadRequestEvent;
+        NewGameEvent.OnEventRaised -= NewGame;
     }
 
     private void NewGame()
     {
         sceneToLoad = firstLoadScene;
-        OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        //OnLoadRequestEvent(sceneToLoad, firstPosition, true);
+        LoadEventSO.RaiseLoadRequestEvent(sceneToLoad, firstPosition, true);
     }
     private void OnLoadRequestEvent(GameSceneSO locationToLoad, Vector3 posToGO, bool FadeScreen)
     {
@@ -76,8 +86,10 @@ public class SceneLoader : MonoBehaviour
            fadeEvent.FadeIn(fadeDuration);
         }
         yield return new WaitForSeconds(fadeDuration);
-  
-       currentLoadedScene.sceneReference.UnLoadScene();
+        //广播事件调整血条显示
+        unloadedSceneEvent.RaiseLoadRequestEvent(sceneToLoad, positionToGo, true);
+
+        currentLoadedScene.sceneReference.UnLoadScene();
        playerTransform.gameObject.SetActive(false);
         LoadNewScene();
     }
@@ -99,7 +111,11 @@ public class SceneLoader : MonoBehaviour
         }
         isLoading= false;
         //场景加载完成后触发事件
-        aftersceneLoadEvent.RaiseEvent();
+        if(currentLoadedScene.sceneType==SceneType.Location)
+        {
+            aftersceneLoadEvent.RaiseEvent();
+        }
+        
     }
 }
    

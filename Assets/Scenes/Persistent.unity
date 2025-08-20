@@ -192,7 +192,7 @@ Transform:
   m_GameObject: {fileID: 39642438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.03, y: -14.879999, z: -10}
+  m_LocalPosition: {x: -6.4, y: -1.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStateBar: {fileID: 1625034576}
   healthEvent: {fileID: 11400000, guid: 8a6de8576eaf05f44aaba8201fcf4b14, type: 2}
+  loadEvent: {fileID: 11400000, guid: 0da8879e1d719fa42914cfaab527a4a4, type: 2}
 --- !u!4 &669096230
 Transform:
   m_ObjectHideFlags: 0
@@ -673,7 +674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669096228}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -815,7 +816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859447691}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -835,11 +836,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 2044164428}
-  firstPosition: {x: 0, y: 0, z: 0}
+  firstPosition: {x: -6.4, y: -2.96, z: 0}
+  menuPosition: {x: -12.66, y: -20.82, z: 0}
   LoadEventSO: {fileID: 11400000, guid: 4a763825b3daa3149b512dcb9d327c40, type: 2}
-  firstLoadScene: {fileID: 11400000, guid: db87f28da2a89ea429fa07396bcb9adc, type: 2}
+  NewGameEvent: {fileID: 11400000, guid: 5c1e2f6101e694d4bafaaac9f56da76c, type: 2}
   aftersceneLoadEvent: {fileID: 11400000, guid: 2ebfa142240326f4087eda2fe47a8a01, type: 2}
   fadeEvent: {fileID: 11400000, guid: 007ed07868845fc4eb503bae16d94b70, type: 2}
+  unloadedSceneEvent: {fileID: 11400000, guid: 0da8879e1d719fa42914cfaab527a4a4, type: 2}
+  firstLoadScene: {fileID: 11400000, guid: db87f28da2a89ea429fa07396bcb9adc, type: 2}
+  MenuScene: {fileID: 11400000, guid: 12e4fabfee6e46a4193fee695cd5a8dd, type: 2}
   positionToGo: {x: 0, y: 0, z: 0}
   fadeDuration: 0.5
 --- !u!1 &869111284
@@ -1729,7 +1734,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521355961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1976,8 +1981,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576436615}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.03, y: -14.879999, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.4, y: -1.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1999,7 +2004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1625034576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2686,7 +2691,7 @@ Transform:
   m_GameObject: {fileID: 2044164426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.03, y: -15.98, z: 0}
+  m_LocalPosition: {x: -6.4, y: -2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2768,6 +2773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94c55e6309c2db4db6b513e8bfb1f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadEvent: {fileID: 11400000, guid: 4a763825b3daa3149b512dcb9d327c40, type: 2}
+  afterSceneLoadEvent: {fileID: 11400000, guid: 2ebfa142240326f4087eda2fe47a8a01, type: 2}
   capsuleCollider2D: {fileID: 0}
   inputDirection: {x: 0, y: 0}
   moveSpeed: 5
@@ -2858,6 +2865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5cff7c3516c1746bdb536955619107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newGameEvent: {fileID: 11400000, guid: 5c1e2f6101e694d4bafaaac9f56da76c, type: 2}
   onHealthChange:
     m_PersistentCalls:
       m_Calls:
@@ -3129,14 +3137,14 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 39642440}
+  - {fileID: 1576436620}
+  - {fileID: 869111286}
   - {fileID: 2044164428}
   - {fileID: 1833486497}
   - {fileID: 1215508947}
   - {fileID: 1146813688}
   - {fileID: 669096230}
-  - {fileID: 39642440}
-  - {fileID: 869111286}
   - {fileID: 1521355965}
-  - {fileID: 1576436620}
   - {fileID: 859447692}
   - {fileID: 1090174043}
